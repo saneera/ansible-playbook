@@ -45,7 +45,7 @@ To deploy this playbook:
 
     ansible-playbook -c local strimzi-deploy-openshift.yml
 
-[strimzi-deploy-openshift.yml](01.strimzi-deploy-openshift.yml) is a full playbook.
+[01.strimzi-deploy-openshift.yml](01.strimzi-deploy-openshift.yml) is a full playbook.
 
 To undeploy this playbook:
 
@@ -67,7 +67,7 @@ To deploy this playbook:
 
     $ ansible-playbook -c local strimzi-deploy-operator.yml
 
-[strimzi-deploy-operator.yml](02.strimzi-deploy-operator.yml) is a full playbook.
+[02.strimzi-deploy-operator.yml](02.strimzi-deploy-operator.yml) is a full playbook.
 
 To undeploy this playbook:
 
@@ -85,18 +85,10 @@ To deploy this playbook:
 
     $ ansible-playbook -c local strimzi-deploy-kafka.yml
 
-[strimzi-deploy-kafka.yml](03.strimzi-deploy-kafka.yml) is a full playbook.
+[03.strimzi-deploy-kafka.yml](03.strimzi-deploy-kafka.yml) is a full playbook.
 
 To undeploy this playbook:
 
     $ ansible-playbook -c local strimzi-undeploy-kafka.yml
 
 [strimzi-undeploy-kafka.yml](strimzi-undeploy-kafka.yml) is a full playbook.
-
-## Main References
-
-* [Strimzi.io Documentation](https://strimzi.io/documentation/)
-* [Why do I need cluster admin privileges to install Strimzi?](https://strimzi.io/docs/master/#why_do_i_need_cluster_admin_privileges_to_install_strimzi)
-* [Ansible Documentation](http://docs.ansible.com/ansible/)
-* [k8s_facts - Describe Kubernetes Objects](https://docs.ansible.com/ansible/latest/modules/k8s_facts_module.html#k8s-facts-module)
-* [k8s - Manage Kubernetes Objects](https://docs.ansible.com/ansible/latest/modules/k8s_module.html)
