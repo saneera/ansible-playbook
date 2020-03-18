@@ -1,0 +1,83 @@
+apiVersion: kafka.strimzi.io/v1alpha1
+kind: Kafka
+metadata:
+  name: {{ kafka_cluster_name }}
+  labels:
+    app: {{ kafka_cluster_name }}
+spec:
+  kafka:
+    replicas: ${{ kafka_replicas }}
+    config:
+      default.replication.factor: ${{ kafka_default_replication_factor }}
+      offsets.topic.replication.factor: ${{ kafka_offset_topic_replication_factor }}
+      transaction.state.log.replication.factor: ${{ kafka_transaction_state_replication_factor }}
+    listeners:
+      plain: {}
+      tls:
+        authentication:
+          type: oauth
+          clientId: ${{ kafka_client_id }}
+          clientSecret:
+            key: secret
+            secretName: ${{ kafka_secret }}
+          validIssuerUri: https://${{ oauth_server }}/auth/realms/internal
+          jwksEndpointUri: https://${{ oauth_server }}/auth/realms/internal/protocol/openid-connect/certs
+          userNameClaim: preferred_username
+          tlsTrustedCertificates:
+            - secretName: ${{ ca_truststore }}
+              certificate: ${{ ca_cert }}
+      external:
+        type: loadbalancer
+        authentication:
+          type: oauth
+          clientId: ${{ kafka_client_id }}
+          clientSecret:
+            key: secret
+            secretName: ${{ kafka_secret }}
+          validIssuerUri: https://${{ oauth_server }}/auth/realms/internal
+          jwksEndpointUri: https://${{ oauth_server }}/auth/realms/internal/protocol/openid-connect/certs
+          userNameClaim: preferred_username
+          tlsTrustedCertificates:
+            - secretName: ${{ ca_truststore }}
+              certificate: ${{ ca_cert }}
+    livenessProbe:
+      initialDelaySeconds: ${{ kafka_healthcheck_delay }}
+      timeoutSeconds: ${{ kafka_healthcheck_timeout }}
+    readinessProbe:
+      initialDelaySeconds: ${{ kafka_healthcheck_delay }}
+      timeoutSeconds: ${{ kafka_healthcheck_timeout }}
+    storage:
+      type: persistent-claim
+      size: ${{ kafka_volume_capacity }}
+      deleteClaim: false
+     resources:
+       requests:
+         memory: 1Gi
+         cpu: 500m
+       limits:
+         memory: 8Gi
+         cpu: 4
+  zookeeper:
+    replicas: ${{ zookeper_replicas }}
+    livenessProbe:
+      initialDelaySeconds: ${{ zookeeper_healthcheck_delay }}
+      timeoutSeconds: ${{ zookeeper_healthcheck_timeout }}
+    readinessProbe:
+      initialDelaySeconds: ${{ zookeeper_healthcheck_delay }}
+      timeoutSeconds: ${{ zookeeper_healthcheck_timeout }}
+    storage:
+      type: persistent-claim
+      size: "${{ zookeeper_volume_capacity }"
+      deleteClaim: false
+    resources:
+      requests:
+        memory: 1Gi
+        cpu: 500m
+      limits:
+        memory: 4Gi
+        cpu: 2
+  entityOperator:
+    topicOperator:
+      reconciliationIntervalSeconds: 60
+    userOperator:
+      reconciliationIntervalSeconds: 60

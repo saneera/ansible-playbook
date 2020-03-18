@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars_files:
+  - vars/namespaces_yml
+  vars_prompt:
+  - name: "ocp"
+    prompt: "Enter OCP Master URL"
+    private: no
+  - name: "ocp_username"
+    prompt: "Enter OCP Developer username"
+    private: no
+  - name: "ocp_password"
+    prompt: "Enter OCP Developer password"
+    private: yes
+  tasks:
+  - name: "[Include Role] ocp-get-token"
+    include_role:
+      name: ocp-get-token
+  - name: "Include Role: strimzi-kafka"
+    include_role:
+      name: strimzi-kafka
+    vars:
+      namespace: "{{ item.namespace }}"
+      user: "{{ item.user }}"
+      state: present
+      kafka_cluster_name: my-cluster
+      kafka_replicas: 3
+      kafka_healthcheck_delay: 15
+      kafka_healthcheck_timeout: 10
+      kafka_volume_capacity: 100Gi
+      kafka_default_replication_factor: 3
+      kafka_offset_topic_replication_factor: 3
+      kafka_transaction_state_replication_factor: 3
+      zookeeper_replicas: 3
+      zookeeper_healthcheck_delay: 15
+      zookeeper_healthcheck_timeout: 10
+      zookeeper_volume_capacity: 50Gi
+      oauth_server: 20.191.254.143:8443
+      kafka_client_id: kafka-broker
+      kafka_client_secret: dc0551c4-f098-451f-b850-5cbbb65561f2
+      kafka_secret: broker-oauth-secret
+      ca_truststore: ca-truststore
+      ca_cert: ca.crt
+    with_items: "{{ namespaces | sort(attribute='state') }}"
