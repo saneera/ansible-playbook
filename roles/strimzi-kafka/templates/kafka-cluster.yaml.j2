@@ -13,33 +13,9 @@ spec:
       transaction.state.log.replication.factor: ${{ kafka_transaction_state_replication_factor }}
     listeners:
       plain: {}
-      tls:
-        authentication:
-          type: oauth
-          clientId: ${{ kafka_client_id }}
-          clientSecret:
-            key: secret
-            secretName: ${{ kafka_secret }}
-          validIssuerUri: https://${{ oauth_server }}/auth/realms/internal
-          jwksEndpointUri: https://${{ oauth_server }}/auth/realms/internal/protocol/openid-connect/certs
-          userNameClaim: preferred_username
-          tlsTrustedCertificates:
-            - secretName: ${{ ca_truststore }}
-              certificate: ${{ ca_cert }}
+      tls: {}
       external:
         type: loadbalancer
-        authentication:
-          type: oauth
-          clientId: ${{ kafka_client_id }}
-          clientSecret:
-            key: secret
-            secretName: ${{ kafka_secret }}
-          validIssuerUri: https://${{ oauth_server }}/auth/realms/internal
-          jwksEndpointUri: https://${{ oauth_server }}/auth/realms/internal/protocol/openid-connect/certs
-          userNameClaim: preferred_username
-          tlsTrustedCertificates:
-            - secretName: ${{ ca_truststore }}
-              certificate: ${{ ca_cert }}
     livenessProbe:
       initialDelaySeconds: ${{ kafka_healthcheck_delay }}
       timeoutSeconds: ${{ kafka_healthcheck_timeout }}
@@ -47,16 +23,7 @@ spec:
       initialDelaySeconds: ${{ kafka_healthcheck_delay }}
       timeoutSeconds: ${{ kafka_healthcheck_timeout }}
     storage:
-      type: persistent-claim
-      size: ${{ kafka_volume_capacity }}
-      deleteClaim: false
-     resources:
-       requests:
-         memory: 1Gi
-         cpu: 500m
-       limits:
-         memory: 8Gi
-         cpu: 4
+      type: ephemeral
   zookeeper:
     replicas: ${{ zookeper_replicas }}
     livenessProbe:
@@ -66,16 +33,7 @@ spec:
       initialDelaySeconds: ${{ zookeeper_healthcheck_delay }}
       timeoutSeconds: ${{ zookeeper_healthcheck_timeout }}
     storage:
-      type: persistent-claim
-      size: "${{ zookeeper_volume_capacity }"
-      deleteClaim: false
-    resources:
-      requests:
-        memory: 1Gi
-        cpu: 500m
-      limits:
-        memory: 4Gi
-        cpu: 2
+      type: ephemeral
   entityOperator:
     topicOperator:
       reconciliationIntervalSeconds: 60
