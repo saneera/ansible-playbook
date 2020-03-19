@@ -25,7 +25,7 @@ spec:
     storage:
       type: ephemeral
   zookeeper:
-    replicas: ${{ zookeper_replicas }}
+    replicas: ${{ zookeeper_replicas }}
     livenessProbe:
       initialDelaySeconds: ${{ zookeeper_healthcheck_delay }}
       timeoutSeconds: ${{ zookeeper_healthcheck_timeout }}
