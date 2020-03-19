@@ -17,8 +17,6 @@ spec:
         strimzi.io/kind: cluster-operator
     spec:
       serviceAccountName: strimzi-cluster-operator
-      nodeSelector:
-        mykey: my-value
       containers:
       - name: strimzi-cluster-operator
         image: strimzi/operator:0.16.2
