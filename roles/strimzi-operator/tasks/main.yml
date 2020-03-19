@@ -4,7 +4,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '010-ServiceAccount-strimzi-cluster-operator.yaml') }}"
 
@@ -13,7 +13,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('template', '020-RoleBinding-strimzi-cluster-operator.yaml.j2') }}"
 
@@ -22,7 +22,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('template', '021-ClusterRoleBinding-strimzi-cluster-operator.yaml.j2') }}"
 
@@ -31,7 +31,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('template', '030-ClusterRoleBinding-strimzi-cluster-operator-kafka-broker-delegation.yaml.j2') }}"
 
@@ -40,7 +40,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('template', '031-RoleBinding-strimzi-cluster-operator-entity-operator-delegation.yaml.j2') }}"
 
@@ -49,7 +49,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('template', '032-RoleBinding-strimzi-cluster-operator-topic-operator-delegation.yaml.j2') }}"
 
@@ -58,7 +58,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('template', '050-Deployment-strimzi-cluster-operator.yaml.j2') }}"
 

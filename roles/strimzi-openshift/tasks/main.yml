@@ -13,7 +13,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '020-ClusterRole-strimzi-cluster-operator-role.yaml') }}"
 
@@ -22,7 +22,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '021-ClusterRole-strimzi-cluster-operator-role.yaml') }}"
 
@@ -31,7 +31,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '030-ClusterRole-strimzi-kafka-broker.yaml') }}"
 
@@ -40,7 +40,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '031-ClusterRole-strimzi-entity-operator.yaml') }}"
 
@@ -49,7 +49,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '032-ClusterRole-strimzi-topic-operator.yaml') }}"
 
@@ -67,7 +67,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '041-Crd-kafkaconnect.yaml') }}"
 
@@ -76,7 +76,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '042-Crd-kafkaconnects2i.yaml') }}"
 
@@ -85,7 +85,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '043-Crd-kafkatopic.yaml') }}"
 
@@ -94,7 +94,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '044-Crd-kafkauser.yaml') }}"
 
@@ -103,7 +103,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '045-Crd-kafkamirrormaker.yaml') }}"
 
@@ -112,7 +112,7 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '046-Crd-kafkabridge.yaml') }}"
 
@@ -121,6 +121,6 @@
     host: "{{ ocp }}"
     api_key: "{{ ocp_token }}"
     verify_ssl: no
-    namespace: "{{ namespace }}"
+    namespace: "{{ operator-namespace }}"
     state: "{{ state }}"
     definition: "{{ lookup('file', '047-Crd-kafkaconnector.yaml') }}"

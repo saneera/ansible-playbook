@@ -1,2 +1,2 @@
 namespaces:
-- { namespace: strimzi, user: admin, state: "{{ state }}" }
+- { operator-namespace: strimzi, kafka-namespace: kafka,  user: admin, state: "{{ state }}" }
