@@ -24,7 +24,7 @@
       namespace: "{{ item.namespace }}"
       user: "{{ item.user }}"
       state: absent
-      kafka_cluster_name: my-kafka
+      kafka_cluster_name: my-cluster
       kafka_replicas: 3
       kafka_healthcheck_delay: 15
       kafka_healthcheck_timeout: 10
