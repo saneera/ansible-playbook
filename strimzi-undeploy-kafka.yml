@@ -23,6 +23,7 @@
     vars:
       namespace: "{{ item.namespace }}"
       user: "{{ item.user }}"
+      action: Delete
       state: absent
       kafka_cluster_name: my-cluster
       kafka_replicas: 3
