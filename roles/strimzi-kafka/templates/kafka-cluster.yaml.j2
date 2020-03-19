@@ -6,32 +6,32 @@ metadata:
     app: {{ kafka_cluster_name }}
 spec:
   kafka:
-    replicas: ${{ kafka_replicas }}
+    replicas: ${{ kafka_replicas | int }}
     config:
-      default.replication.factor: ${{ kafka_default_replication_factor }}
-      offsets.topic.replication.factor: ${{ kafka_offset_topic_replication_factor }}
-      transaction.state.log.replication.factor: ${{ kafka_transaction_state_replication_factor }}
+      default.replication.factor: ${{ kafka_default_replication_factor | int }}
+      offsets.topic.replication.factor: ${{ kafka_offset_topic_replication_facto | intr }}
+      transaction.state.log.replication.factor: ${{ kafka_transaction_state_replication_factor | int }}
     listeners:
       plain: {}
       tls: {}
       external:
         type: loadbalancer
     livenessProbe:
-      initialDelaySeconds: ${{ kafka_healthcheck_delay }}
-      timeoutSeconds: ${{ kafka_healthcheck_timeout }}
+      initialDelaySeconds: ${{ kafka_healthcheck_delay | int }}
+      timeoutSeconds: ${{ kafka_healthcheck_timeout | int }}
     readinessProbe:
-      initialDelaySeconds: ${{ kafka_healthcheck_delay }}
-      timeoutSeconds: ${{ kafka_healthcheck_timeout }}
+      initialDelaySeconds: ${{ kafka_healthcheck_delay | int }}
+      timeoutSeconds: ${{ kafka_healthcheck_timeout | int }}
     storage:
       type: ephemeral
   zookeeper:
-    replicas: ${{ zookeeper_replicas }}
+    replicas: ${{ zookeeper_replicas | int }}
     livenessProbe:
-      initialDelaySeconds: ${{ zookeeper_healthcheck_delay }}
-      timeoutSeconds: ${{ zookeeper_healthcheck_timeout }}
+      initialDelaySeconds: ${{ zookeeper_healthcheck_delay | int }}
+      timeoutSeconds: ${{ zookeeper_healthcheck_timeout | int }}
     readinessProbe:
-      initialDelaySeconds: ${{ zookeeper_healthcheck_delay }}
-      timeoutSeconds: ${{ zookeeper_healthcheck_timeout }}
+      initialDelaySeconds: ${{ zookeeper_healthcheck_delay | int }}
+      timeoutSeconds: ${{ zookeeper_healthcheck_timeout | int }}
     storage:
       type: ephemeral
   entityOperator:

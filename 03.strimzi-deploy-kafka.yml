@@ -25,16 +25,16 @@
       user: "{{ item.user }}"
       state: present
       kafka_cluster_name: my-cluster
-      kafka_replicas | int: 3
-      kafka_healthcheck_delay | int: 15
-      kafka_healthcheck_timeout | int: 10
+      kafka_replicas: 3
+      kafka_healthcheck_delay: 15
+      kafka_healthcheck_timeout: 10
       kafka_volume_capacity: 100Gi
-      kafka_default_replication_factor | int: 3
-      kafka_offset_topic_replication_factor | int: 3
-      kafka_transaction_state_replication_factor | int: 3
-      zookeeper_replicas | int: 3
-      zookeeper_healthcheck_delay | int: 15
-      zookeeper_healthcheck_timeout | int: 10
+      kafka_default_replication_factor: 3
+      kafka_offset_topic_replication_factor: 3
+      kafka_transaction_state_replication_factor: 3
+      zookeeper_replicas: 3
+      zookeeper_healthcheck_delay: 15
+      zookeeper_healthcheck_timeout: 10
       zookeeper_volume_capacity: 50Gi
       oauth_server: keycloak.keycloak:8443
       kafka_client_id: kafka-broker
