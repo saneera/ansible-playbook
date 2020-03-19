@@ -2,7 +2,7 @@
 - hosts: localhost
   gather_facts: no
   vars_files:
-  - vars/namespaces_yml
+    - vars/namespaces.yml
   vars_prompt:
   - name: "ocp"
     prompt: "Enter OCP Master URL"
